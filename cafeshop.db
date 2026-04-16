@@ -1,0 +1,31 @@
+PRAGMA foreign_keys = ON;
+
+DROP TABLE IF EXISTS items;
+DROP TABLE IF EXISTS categories;
+
+CREATE TABLE categories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL
+);
+
+CREATE TABLE items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    price REAL NOT NULL,
+    image TEXT NOT NULL,
+    stock INTEGER NOT NULL,
+    category_id INTEGER NOT NULL,
+    FOREIGN KEY (category_id) REFERENCES categories(id)
+);
+
+INSERT INTO categories (name) VALUES
+('Coffee'),
+('Tea'),
+('Cake'),
+('Bakery');
+
+INSERT INTO items (name, price, image, stock, category_id) VALUES
+('Latte', 65, 'https://images.unsplash.com/photo-1509042239860-f550ce710b93', 10, 1),
+('Green Tea', 55, 'https://images.unsplash.com/photo-1544787219-7f47ccb76574', 15, 2),
+('Chocolate Cake', 89, 'https://images.unsplash.com/photo-1578985545062-69928b1d9587', 5, 3),
+('Croissant', 45, 'https://images.unsplash.com/photo-1555507036-ab794f4afe5c', 12, 4);
